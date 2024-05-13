@@ -1,0 +1,32 @@
+name: Check generated code is latest
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - "**.dart"
+      - "**.yaml"
+      - "**/pubspec.lock"
+
+jobs:
+  check:
+    runs-on: ubuntu-22.04
+
+    timeout-minutes: 10
+
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Setup Application Runtime
+        uses: ./.github/actions/setup-application-runtime
+
+      - name: Regenerate code
+        run: melos run regenerate_code --no-select
+
+      - name: Check difference
+        run: |
+          git add -N .
+          git diff --name-only --exit-code
