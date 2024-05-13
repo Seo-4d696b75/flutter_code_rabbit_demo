@@ -2,6 +2,7 @@ part of 'package:flutter_app/router/provider/router.dart';
 
 @TypedStatefulShellRoute<MainPageShellRoute>(
   branches: [
+    counterShellBranch,
     homeShellBranch,
     settingShellBranch,
   ],

@@ -19,6 +19,14 @@ RouteBase get $mainPageShellRoute => StatefulShellRouteData.$route(
         StatefulShellBranchData.$branch(
           routes: [
             GoRouteData.$route(
+              path: '/counter',
+              factory: $CounterPageRouteExtension._fromState,
+            ),
+          ],
+        ),
+        StatefulShellBranchData.$branch(
+          routes: [
+            GoRouteData.$route(
               path: '/',
               factory: $HomePageRouteExtension._fromState,
               routes: [
@@ -60,6 +68,24 @@ RouteBase get $mainPageShellRoute => StatefulShellRouteData.$route(
 extension $MainPageShellRouteExtension on MainPageShellRoute {
   static MainPageShellRoute _fromState(GoRouterState state) =>
       const MainPageShellRoute();
+}
+
+extension $CounterPageRouteExtension on CounterPageRoute {
+  static CounterPageRoute _fromState(GoRouterState state) =>
+      const CounterPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/counter',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $HomePageRouteExtension on HomePageRoute {

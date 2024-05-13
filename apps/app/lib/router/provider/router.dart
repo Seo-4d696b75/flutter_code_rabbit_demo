@@ -1,6 +1,7 @@
 import 'package:cores_core/app_status.dart';
 import 'package:cores_core/util.dart';
 import 'package:cores_navigation/providers.dart';
+import 'package:features_counter/ui.dart';
 import 'package:features_debug_mode/ui.dart';
 import 'package:features_github_repository/ui.dart';
 import 'package:features_setting/setting.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'package:flutter_app/router/routes/main/counter/counter_page_route.dart';
 part 'package:flutter_app/router/routes/main/home/debug_page_route.dart';
 part 'package:flutter_app/router/routes/main/home/home_shell_branch.dart';
 part 'package:flutter_app/router/routes/main/home/web_page_route.dart';
@@ -34,7 +36,7 @@ GoRouter router(RouterRef ref) {
     navigatorKey: _rootNavigatorKey,
     routes: $appRoutes,
     debugLogDiagnostics: kDebugMode,
-    initialLocation: HomePageRoute.path,
+    initialLocation: CounterPageRoute.path,
     redirect: (_, __) {
       final maintenanceModeEnabled = maintenanceModeStatus.enabled;
 

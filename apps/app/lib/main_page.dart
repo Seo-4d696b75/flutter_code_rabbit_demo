@@ -21,6 +21,10 @@ class MainPage extends ConsumerWidget {
         selectedIndex: navigationShell.currentIndex,
         destinations: [
           NavigationDestination(
+            label: l.bottomTabCounter,
+            icon: const Icon(Icons.onetwothree),
+          ),
+          NavigationDestination(
             label: l.bottomTabHome,
             icon: const Icon(Icons.home),
           ),

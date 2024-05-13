@@ -100,6 +100,12 @@ abstract class L10n {
   /// **'Flutter テンプレート'**
   String get appBar;
 
+  /// No description provided for @bottomTabCounter.
+  ///
+  /// In ja, this message translates to:
+  /// **'カウンター'**
+  String get bottomTabCounter;
+
   /// No description provided for @bottomTabHome.
   ///
   /// In ja, this message translates to:
