@@ -1,28 +1,18 @@
+import 'package:features_counter/src/ui/provider/counter_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CounterPage extends StatefulWidget {
+class CounterPage extends ConsumerWidget {
   const CounterPage({required this.title, super.key});
 
   final String title;
 
   @override
-  State<CounterPage> createState() => _CounterPageState();
-}
-
-class _CounterPageState extends State<CounterPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(countProvider());
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Column(
@@ -32,14 +22,16 @@ class _CounterPageState extends State<CounterPage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$count',
               style: Theme.of(context).textTheme.displayLarge,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          ref.read(countProvider().notifier).increment();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
