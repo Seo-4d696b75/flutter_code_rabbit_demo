@@ -6,7 +6,7 @@ part of 'counter_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$countHash() => r'286c92f53464f7916446f266d7ca571e2e50c2bd';
+String _$countHash() => r'3f08fa670db50aaab14b4214eb48ec022ed84c2e';
 
 /// Copied from Dart SDK
 class _SystemHash {
