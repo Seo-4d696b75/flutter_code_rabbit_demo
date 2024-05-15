@@ -8,8 +8,9 @@ class CounterPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = ref.watch(counterTitleProvider);
+    final title = ref.read(counterTitleProvider);
     final count = ref.watch(countProvider());
+    final notifier = ref.watch(countProvider().notifier);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -29,9 +30,7 @@ class CounterPage extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(countProvider().notifier).increment();
-        },
+        onPressed: notifier.increment,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
