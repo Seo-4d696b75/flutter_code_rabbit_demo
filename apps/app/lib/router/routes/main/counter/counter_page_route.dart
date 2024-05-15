@@ -19,6 +19,11 @@ class CounterPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const CounterPage(title: 'Demo');
+    return ProviderScope(
+      overrides: [
+        counterTitleProvider.overrideWithValue('Counter'),
+      ],
+      child: const CounterPage(),
+    );
   }
 }
